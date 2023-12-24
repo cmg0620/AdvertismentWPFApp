@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace WpfApp1
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
+    /// 
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -36,7 +39,16 @@ namespace WpfApp1
         public void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
             is_agent = true;
-            
+
+        }
+
+        private void TextBox_login_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_login.Text = string.Empty;
+        }
+        private void TextBox_password_MouseDown(object sender, MouseEventArgs e)
+        {
+            TextBox_password.Text = string.Empty;
         }
         public void Button_enter_click(object sender, EventArgs e)
         {
@@ -70,6 +82,7 @@ namespace WpfApp1
                         string org = client.Element("org").Value;
                         string bank = client.Element("bank").Value;
                         string phone = client.Element("phone").Value;
+                        string user_id = client.Attribute("id").Value;
                         uw.Show();
                         uw.CreateText(name, org, bank, phone); 
                         this.Hide();

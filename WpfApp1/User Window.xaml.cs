@@ -37,10 +37,6 @@ namespace WpfApp1
             Change_Info_Window change_Info_Window = new Change_Info_Window();
             change_Info_Window.Show();
         }
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
         private void Button_exit(object sender, RoutedEventArgs e)
         {
             MainWindow mw = new MainWindow();

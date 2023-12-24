@@ -8,7 +8,7 @@
         Title="UserWindow" Height="1024" Width="1440">
     <Grid Background="#FF222222" Width="1440" Height="1024">
 
-        <TabControl Background="#FF222222" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged" BorderBrush="{x:Null}" Foreground="{x:Null}">
+        <TabControl Background="#FF222222" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" TabStripPlacement="Left"  BorderBrush="{x:Null}" Foreground="{x:Null}">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">

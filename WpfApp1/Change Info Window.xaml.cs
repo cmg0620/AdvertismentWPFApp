@@ -17,12 +17,26 @@ namespace WpfApp1
     /// <summary>
     /// Логика взаимодействия для Change_Info_Window.xaml
     /// </summary>
+    
+    
     public partial class Change_Info_Window : Window
     {
+
         public Change_Info_Window()
         {
             InitializeComponent();
         }
 
+
+
+        private void Button_Cancel(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        public void Button_Apply(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -30,14 +30,14 @@
                     </TextBlock.Foreground>
                 </TextBlock>
                 <TextBlock HorizontalAlignment="Left" Height="90" TextWrapping="Wrap" Text="Для дальнейшей работы системы необходимо подтвердить свои данные" VerticalAlignment="Top" Width="706" Foreground="White" FontFamily="{DynamicResource Inter}" FontSize="32" Margin="0,15,0,10" FontWeight="Medium"/>
-                <TextBox x:Name="TextBox_login" FontSize="32" Height="76" Width="570" HorizontalAlignment="Left" Margin="0,0,0,28" Padding="20,10,0,0" Foreground="#FF818181" Text="Логин">
+                <TextBox x:Name="TextBox_login" FontSize="32" Height="76" Width="570" HorizontalAlignment="Left" Margin="0,0,0,28" Padding="20,10,0,0" Foreground="#FF818181" Text="Логин" PreviewMouseDown="TextBox_login_MouseDown" >
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="26"/>
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <TextBox x:Name="TextBox_password" FontSize="32" Height="76" Width="570" HorizontalAlignment="Left" Margin="0,0,0,28" Padding="20,10,0,0" Foreground="#FF818181" Text="Пароль">
+                <TextBox x:Name="TextBox_password" FontSize="32" Height="76" Width="570" HorizontalAlignment="Left" Margin="0,0,0,28" Padding="20,10,0,0" Foreground="#FF818181" Text="Пароль" PreviewMouseDown="TextBox_password_MouseDown">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="26"/>
