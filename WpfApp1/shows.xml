@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<shows>
+    <show>
+        <id>1</id>
+        <name>Барби</name>
+        <rate>89</rate>
+        <price>100000</price>
+    </show>
+    <show>
+        <id>2</id>
+        <name>Новости</name>
+        <rate>95</rate>
+        <price>200000</price>
+    </show>
+    <show>
+        <id>3</id>
+        <name>Парламентский час</name>
+        <rate>12</rate>
+        <price>1000</price>
+    </show>
+    <show>
+        <id>4</id>
+        <name>Воронины</name>
+        <rate>70</rate>
+        <price>25000</price>
+    </show>
+</shows>

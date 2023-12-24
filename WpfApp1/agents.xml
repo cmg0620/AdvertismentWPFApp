@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<agents>
+    <agent>
+        <agent_id>1</agent_id>
+        <name>Маркелов Дмитрий</name>
+        <salary>0</salary>
+		<password>12345</password>
+    </agent>
+    <agent>
+        <agent_id>2</agent_id>
+        <name>Даниил Чернов</name>
+        <salary>0</salary>
+		<password>56789</password>
+    </agent>
+    <agent>
+        <agent_id>3</agent_id>
+        <name>Рыбакова Татьяна</name>
+        <salary>0</salary>
+		<password>90123</password>
+    </agent>
+</agents>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<clients>
+    <client>
+        <id>1</id>
+        <org>ООО "Шишкин лес"</org>
+        <bank>1234 1234 1234 1234</bank>
+        <phone>89035231739</phone>
+        <name>Родионов Андрей</name>
+        <password>1234</password>
+    </client>
+    <client>
+        <id>2</id>
+        <org>Секс-шоп "Шарп"</org>
+        <bank>2228 1258 9082 2298</bank>
+        <phone>89786620111</phone>
+        <name>Олег Евдошенко</name>
+        <password>5678</password>
+    </client>
+    <client>
+        <id>3</id>
+        <org>Ресторан "Тортуга"</org>
+        <bank>6722 7780 0228 2820</bank>
+        <phone>88005553535</phone>
+        <name>Михаил Щербаков</name>
+        <password>9012</password>
+    </client>
+    <client>
+        <id>4</id>
+        <org>Архитектурное бюро</org>
+        <bank>0810 2004 1111 2345</bank>
+        <phone>89996661122</phone>
+        <name>Александра Белякова</name>
+        <password>3456</password>
+    </client>
+    <client>
+        <id>5</id>
+        <org>Индивидуальные услуги</org>
+        <bank>2005 2405 2090 2933</bank>
+        <phone>89264413212</phone>
+        <name>Андрей Мякишев</name>
+        <password>7890</password>
+    </client>
+</clients>

@@ -1,0 +1,61 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1024" Width="1440">
+    <Window.Resources>
+        <FontFamily x:Key="Inter">Arial</FontFamily>
+    </Window.Resources>
+    <Grid>
+        <Rectangle Width="1440" Height="1024" Margin="0,0,0,-16" Grid.RowSpan="2">
+            <Rectangle.Fill>
+                <LinearGradientBrush>
+                    <GradientStop Color="#ADFF00" Offset="0" />
+                    <GradientStop Color="#FAFF00" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Border Width="1226" Height="740" Background="#FF222222" CornerRadius="30,30,30,30" Margin="107,134,107,134" Grid.RowSpan="2">
+            <StackPanel HorizontalAlignment="Left" Margin="75,67,0,0">
+                <TextBlock Height="90" TextWrapping="Wrap" Text="Добрый день," Width="574" Foreground="White" FontFamily="Arial" FontSize="72" FontWeight="Bold" HorizontalAlignment="Left"/>
+                <TextBlock Height="90" TextWrapping="Wrap" Text="USER_LAST_LOGIN!" Width="750" FontFamily="Arial" FontSize="72" FontWeight="Bold" HorizontalAlignment="Left">
+                    <TextBlock.Foreground>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#FFAEFF00"/>
+                            <GradientStop Color="#FFF9FF00" Offset="1"/>
+                        </RadialGradientBrush>
+                    </TextBlock.Foreground>
+                </TextBlock>
+                <TextBlock HorizontalAlignment="Left" Height="90" TextWrapping="Wrap" Text="Для дальнейшей работы системы необходимо подтвердить свои данные" VerticalAlignment="Top" Width="706" Foreground="White" FontFamily="{DynamicResource Inter}" FontSize="32" Margin="0,15,0,10" FontWeight="Medium"/>
+                <TextBox x:Name="TextBox_login" FontSize="32" Height="76" Width="570" HorizontalAlignment="Left" Margin="0,0,0,28" Padding="20,10,0,0" Foreground="#FF818181" Text="Логин">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="26"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <TextBox x:Name="TextBox_password" FontSize="32" Height="76" Width="570" HorizontalAlignment="Left" Margin="0,0,0,28" Padding="20,10,0,0" Foreground="#FF818181" Text="Пароль">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="26"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <RadioButton Height="25" Margin="0,0,0,10" Foreground="White" FontSize="22" Padding="10,-8,0,0" Checked="RadioButton_Checked">Я рекламный агент</RadioButton>
+                <Button Click="Button_enter_click" Content="Войти" FontSize="32" FontWeight="Bold" Width="226" Height="76" HorizontalAlignment="Left" Background="#FFADFF00" Foreground="#FF222222" FontFamily="{DynamicResource Inter}">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="26"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+</Window>
