@@ -30,11 +30,17 @@ namespace WpfApp1
             TextBlock_org.Text = org;
             TextBlock_bank.Text = bank;
             TextBlock_phone.Text = phone;
+            
+        }
+        public void Id_Handler(string id)
+        {
+            Uid = id;
         }
 
-        private void Button_change_info(object sender, RoutedEventArgs e)
+        public void Button_change_info(object sender, RoutedEventArgs e)
         {
-            Change_Info_Window change_Info_Window = new Change_Info_Window();
+            Change_Info_Window change_Info_Window = new Change_Info_Window(Uid);
+            change_Info_Window.Owner = this;
             change_Info_Window.Show();
         }
         private void Button_exit(object sender, RoutedEventArgs e)

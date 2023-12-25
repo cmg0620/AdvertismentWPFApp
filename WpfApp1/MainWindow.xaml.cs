@@ -77,14 +77,18 @@ namespace WpfApp1
                         TextBox_password.ToolTip = "Ошибка";
                     }
                     if ((client.Element("password").Value == password) && (client.Element("name").Value == login)) {
-                        UserWindow uw = new UserWindow();
+                        
                         string name = client.Element("name").Value;
                         string org = client.Element("org").Value;
                         string bank = client.Element("bank").Value;
                         string phone = client.Element("phone").Value;
                         string user_id = client.Attribute("id").Value;
+                        Console.WriteLine(user_id);
+
+                        UserWindow uw = new UserWindow();
                         uw.Show();
-                        uw.CreateText(name, org, bank, phone); 
+                        uw.CreateText(name, org, bank, phone);
+                        uw.Id_Handler(user_id);
                         this.Hide();
                         break;
                     }
@@ -121,10 +125,13 @@ namespace WpfApp1
 
                         break;
                     }
+
                 }
+
             }
         }
 
 
     }
+
 }
