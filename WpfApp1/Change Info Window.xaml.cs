@@ -64,9 +64,7 @@ namespace WpfApp1
                         if (list_changes[i].Length != 0)
                         {
                             client.Element(list_fields[i]).Value = list_changes[i];
-                            client.Element("phone").Value = "changed";
                             base_clients.Save("..\\..\\clients.xml");
-                            Console.WriteLine("changed");
                         }
                     }
                 }
