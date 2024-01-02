@@ -28,12 +28,12 @@ namespace WpfApp1
             XDocument base_shows = XDocument.Load("C:\\Users\\cmg\\source\\repos\\WpfApp1\\WpfApp1\\shows.xml");
             ObservableCollection<Program> programs = new ObservableCollection<Program>();
             var shows = base_shows.Element("shows");
+            var count = 0;
             foreach (XElement p in shows.Elements("show")) {
-                programs.Add(new Program { Name = p.Element("name").Value.ToString(), Price = p.Element("price").Value.ToString(), Rate = p.Element("rate").Value.ToString() });
-                Console.WriteLine('1');
-                Console.WriteLine(p.Element("name").Value.ToString(),  p.Element("price").Value.ToString(), p.Element("rate").Value.ToString());
+                programs.Add(new Program { Name = p.Element("name").Value.ToString(), Price = Int32.Parse(p.Element("price").Value.ToString()), Rate = Int32.Parse(p.Element("rate").Value.ToString()) });
+                count++;
             }
-                
+            Subheader_1.Text = "Программы на выбор: " + count.ToString();
             prg.AutoGenerateColumns = false;
             prg.ItemsSource = programs;
 
@@ -67,8 +67,8 @@ namespace WpfApp1
         public class Program
         {
             public string Name { get; set; }
-            public string Rate { get; set; }
-            public string Price { get; set; }
+            public int Rate { get; set; }
+            public int Price { get; set; }
 
         }
     }

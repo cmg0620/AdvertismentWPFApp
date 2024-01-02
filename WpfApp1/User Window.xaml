@@ -8,101 +8,10 @@
         Title="UserWindow" Height="1024" Width="1440"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
-        <Style x:Key="ComboBoxTextBoxStyle" TargetType="{x:Type TextBox}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Grid>
-                            <Border CornerRadius="20,0,0,20"
-                            BorderThickness="1,1,0,1"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="White">
-                                <ScrollViewer x:Name="PART_ContentHost"/>
-                            </Border>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="ComboBoxButtonStyle" TargetType="{x:Type ToggleButton}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        
-                        <Border 
-                        Background="White" 
-                        x:Name="border" 
-                        CornerRadius="0,20,20,0" 
-                        BorderThickness="0,1,1,1"
-                        BorderBrush="white">
-                            <ContentPresenter />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style  x:Key="RoundComboBox" TargetType="{x:Type ComboBox}">
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ComboBox}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition MaxWidth="18"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox Name="PART_EditableTextBox"
-                             Style="{StaticResource ComboBoxTextBoxStyle}"
-                             Padding="5,0,0,0"
-                             Height="{TemplateBinding Height}"/>
-                            <ToggleButton Grid.Column="1" Margin="0"
-                            Height="{TemplateBinding Height}"
-                            Style="{StaticResource ComboBoxButtonStyle}"
-                            Focusable="False"
-                            IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                            ClickMode="Press">
-                                <Path Grid.Column="1"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Data="M 0 0 L 4 4 L 8 0 Z"
-                                  Fill="#888888" />
-                            </ToggleButton>
-                            <ContentPresenter Name="ContentSite"
-                            Content="{TemplateBinding SelectionBoxItem}"
-                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Left"
-                            Margin="5,0,0,0"/>
-                            <Popup Name="Popup"
-                            Placement="Bottom"
-                            IsOpen="{TemplateBinding IsDropDownOpen}"
-                            AllowsTransparency="True" 
-                            Focusable="False"
-                            PopupAnimation="Slide">
-                                <Grid Name="DropDown"
-                                SnapsToDevicePixels="True"                
-                                MinWidth="{TemplateBinding ActualWidth}"
-                                MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                    <Border 
-                                    x:Name="DropDownBorder"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Background="Azure"
-                                    BorderBrush="Black"/>
-                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
-                                    </ScrollViewer>
-                                </Grid>
-                            </Popup>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        
-        
+
+
+
+
     </Window.Resources>
     
     
@@ -179,16 +88,15 @@
                     </Border>
                     <Border Width="1072" Height="698"  Background="#FF222222"  CornerRadius="30,30,30,30" Margin="130,250,142,71">
                         <StackPanel Margin="0,30,0,0">
-                            <TextBlock x:Name="Te" Text="1. Выбор передачи" FontSize="48" Foreground="White" FontWeight="Bold" Width="961" Height="72" HorizontalAlignment="Left" Margin="50,0,0,10"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="T" Text="10 телепрограмм на выбор" FontSize="36" Foreground="Red" FontWeight="Bold" Width="743" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,0,0,0"/>
-                                <ComboBox Style="{DynamicResource RoundComboBox}" Width="250" FontSize="24" BorderBrush="White" Background="White" IsReadOnly="True" Text="jbhu" >
-                                    <ComboBoxItem>По цене</ComboBoxItem>
-                                    <ComboBoxItem>По рейтингу</ComboBoxItem>
-                                </ComboBox>
-                            </StackPanel>
-                            <DataGrid Name="prg" Height="350" SelectionUnit="FullRow" Margin="0,55,0,0" Width="949" CanUserResizeColumns="False" CanUserResizeRows="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" Background="{x:Null}" Foreground="#FF969696" BorderBrush="{x:Null}" FontSize="22" FontWeight="Bold">
+                            <TextBlock x:Name="Header_Choose_Prg1" Text="1. Выбор передачи" FontSize="48" Foreground="White" FontWeight="Bold" Width="961" Height="72" HorizontalAlignment="Left" Margin="65,0,0,10"/>
+                            <TextBlock x:Name="Subheader_1" FontSize="36" Foreground="White" FontWeight="Bold" Width="715" Height="52" Margin="65,0,0,0" HorizontalAlignment="Left"/>
+
+                            <DataGrid Style="{DynamicResource DataGridStyle}" RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCell1}" HeadersVisibility="Column" Name="prg" Height="400" SelectionUnit="FullRow" SelectionMode="Single" VerticalGridLinesBrush="{x:Null}" HorizontalGridLinesBrush="{x:Null}" Margin="0,31,0,0" Width="949" CanUserReorderColumns="False" CanUserResizeRows="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Auto" Foreground="#FF969696" BorderBrush="{x:Null}" FontSize="22" FontWeight="Bold" CanUserAddRows="False">
+
                                 <DataGrid.Resources>
+
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFADFF00"/>
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#FFADFF00"/>
                                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
                                         <Setter Property="Background" Value="{x:Null}" />
                                         <Setter Property="Foreground" Value="#FF888888" />
@@ -197,23 +105,116 @@
                                         <Setter Property="Margin" Value="-1,-1,0,0" />
                                         <Setter Property="Height" Value="28" />
                                         <Setter Property="Width" Value="auto"/>
+                                        <Setter Property="Margin" Value="10 0 0 0 " />
+
+                                    </Style>
+                                    <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
+                                        <Setter Property="Margin" Value="0 10 0 10" />
+                                        <Setter Property="Background" Value="#FF222222"/>
+                                        <Setter Property="SnapsToDevicePixels" Value="true"/>
+                                        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                                        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+
+                                    </Style>
+                                    <Style x:Key="DataGridCell1" TargetType="{x:Type DataGridCell}">
                                         
                                     </Style>
-                                    <Style x:Key="NoFocusDataGridCell" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
-                                        <Setter Property="Focusable"        Value="False" />
-                                        <Setter Property="IsTabStop"        Value="False" />
-                                        <Setter Property="IsHitTestVisible" Value="False" />
+
+                                    <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
+                                        <Setter Property="Foreground" Value="#FFFFFF"/>
+                                        <Setter Property="Background" Value="#FF888888"/>
+                                        <Setter Property="Margin" Value="0 5 0 5" />
+                                        <Setter Property="Height" Value="60" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <!--скругление углов в строках-->
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridRow}">
+                                                    <Border x:Name="DGR_Border" BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        Background="{TemplateBinding Background}" 
+                                        SnapsToDevicePixels="True"
+                                        CornerRadius="15">
+                                                        <SelectiveScrollingGrid>
+                                                            <SelectiveScrollingGrid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </SelectiveScrollingGrid.ColumnDefinitions>
+                                                            <SelectiveScrollingGrid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="Auto"/>
+                                                            </SelectiveScrollingGrid.RowDefinitions>
+                                                            <DataGridCellsPresenter Grid.Column="1" ItemsPanel="{TemplateBinding ItemsPanel}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                            <DataGridDetailsPresenter Grid.Column="1" Grid.Row="1" SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, Converter={x:Static DataGrid.RowDetailsScrollingConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Visibility="{TemplateBinding DetailsVisibility}"/>
+                                                            <DataGridRowHeader Grid.RowSpan="2" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                                        </SelectiveScrollingGrid>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                                <Setter Property="Background" Value="#FFADFF00"/>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                                <Setter Property="Background" Value="#FFADFF00"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+
                                     </Style>
+
+
                                 </DataGrid.Resources>
 
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Название" CanUserResize="False" IsReadOnly="True" Binding="{Binding Name}"  Width="*"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Рейтинг" CanUserResize="False" IsReadOnly="True" Binding="{Binding Rate}" Width="*"/>
-                                    <DataGridTextColumn Header="Стоимость" CanUserResize="False" IsReadOnly="True" Binding="{Binding Price}" Width="*"/>
+                                    <DataGridTextColumn Header="Название" CanUserResize="False" IsReadOnly="True" Binding="{Binding Name}"  Width="*">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="DataGridCell">
+                                                <Setter Property="BorderThickness" Value="0 0 0 0" />
+                                            </Style>
+                                        </DataGridTextColumn.CellStyle>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="Margin" Value="10 0 0 0" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Рейтинг" CanUserResize="False" IsReadOnly="True" Binding="{Binding Rate}" Width="*">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="DataGridCell">
+                                                <Setter Property="BorderThickness" Value="0 0 0 0" />
+                                            </Style>
+                                        </DataGridTextColumn.CellStyle>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="Margin" Value="10 0 0 0" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Стоимость" CanUserResize="False" IsReadOnly="True" Binding="{Binding Price}" Width="*">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="DataGridCell">
+                                                <Setter Property="BorderThickness" Value="0 0 0 0" />
+                                            </Style>
+                                        </DataGridTextColumn.CellStyle>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="Margin" Value="10 0 0 0" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
                                 </DataGrid.Columns>
+                                 
                             </DataGrid>
+                            <Button Height="40" Width="310" Content="Следующий шаг →" FontSize="26" HorizontalAlignment="Left" Margin="700,20,0,0" Background="{x:Null}" Foreground="#FFADFF00" FontFamily="Inter" BorderBrush="{x:Null}" VerticalAlignment="Bottom"></Button>
                         </StackPanel>
-
+                        
                     </Border>
                 </Grid>
             </TabItem>
