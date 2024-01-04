@@ -78,7 +78,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Margin="21,0,-21,-99" Height="85" Width="85" Background="#FF3E2323" BorderBrush="#FFC36D6D" Foreground="#FFC17171" VerticalAlignment="Bottom">
+            <TabItem Margin="21,0,-21,-99" Height="85" Width="85" VerticalAlignment="Bottom">
                 <TabItem.Header>
                     <Image Source="C:\Users\cmg\source\repos\WpfApp1\WpfApp1\заказ.png" />
                 </TabItem.Header>
@@ -89,9 +89,10 @@
                     <Border Width="1072" Height="698"  Background="#FF222222"  CornerRadius="30,30,30,30" Margin="130,250,142,71">
                         <StackPanel Margin="0,30,0,0">
                             <TextBlock x:Name="Header_Choose_Prg1" Text="1. Выбор передачи" FontSize="48" Foreground="White" FontWeight="Bold" Width="961" Height="72" HorizontalAlignment="Left" Margin="65,0,0,10"/>
-                            <TextBlock x:Name="Subheader_1" FontSize="36" Foreground="White" FontWeight="Bold" Width="715" Height="52" Margin="65,0,0,0" HorizontalAlignment="Left"/>
+                            <TextBlock x:Name="Subheader_1" FontSize="36" Foreground="White"  TextWrapping="Wrap" FontWeight="Bold" Width="920" Height="52" Margin="65,0,0,0" HorizontalAlignment="Left"/>
 
-                            <DataGrid Style="{DynamicResource DataGridStyle}" RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCell1}" HeadersVisibility="Column" Name="prg" Height="400" SelectionUnit="FullRow" SelectionMode="Single" VerticalGridLinesBrush="{x:Null}" HorizontalGridLinesBrush="{x:Null}" Margin="0,31,0,0" Width="949" CanUserReorderColumns="False" CanUserResizeRows="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Auto" Foreground="#FF969696" BorderBrush="{x:Null}" FontSize="22" FontWeight="Bold" CanUserAddRows="False">
+
+                            <DataGrid SelectedItem="" Style="{DynamicResource DataGridStyle}" RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCell1}" HeadersVisibility="Column" Name="prg" Height="400" SelectionUnit="FullRow" SelectionMode="Single" VerticalGridLinesBrush="{x:Null}" HorizontalGridLinesBrush="{x:Null}" Margin="0,31,0,0" Width="949" CanUserReorderColumns="False" CanUserResizeRows="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Auto" Foreground="#FF969696" BorderBrush="{x:Null}" FontSize="22" FontWeight="Bold" CanUserAddRows="False">
 
                                 <DataGrid.Resources>
 
@@ -212,8 +213,68 @@
                                 </DataGrid.Columns>
                                  
                             </DataGrid>
-                            <Button Height="40" Width="310" Content="Следующий шаг →" FontSize="26" HorizontalAlignment="Left" Margin="700,20,0,0" Background="{x:Null}" Foreground="#FFADFF00" FontFamily="Inter" BorderBrush="{x:Null}" VerticalAlignment="Bottom"></Button>
+                            <Button x:Name="Button_Select" Click="Select" Height="40" Width="310" Content="Следующий шаг →" FontSize="26"   HorizontalAlignment="Left" Margin="700,20,0,0" Background="{x:Null}" Foreground="#FFADFF00" FontFamily="Inter" BorderBrush="{x:Null}" VerticalAlignment="Bottom"></Button>
+                            
+                            <StackPanel x:Name="Step_2" HorizontalAlignment="Left" Margin="65, 0, 0, 0">
+                                <TextBlock x:Name="TextBlock_order_name" Width="300" Margin="0,0,0,8" FontSize="28" Foreground="White" HorizontalAlignment="Left"><Run Text="Название"/></TextBlock>
+                                <TextBox x:Name="TextBox_order_name" FontSize="24" Height="60" Width="900" Padding="20,10,0,0" Foreground="#FF818181" Margin="0,0,0,24" HorizontalAlignment="Left">
+                                    <TextBox.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="20"/>
+                                        </Style>
+                                    </TextBox.Resources>
+                                </TextBox>
+                                <TextBlock x:Name="TextBlock_order_drb" Width="300" Margin="0,0,0,8" FontSize="28" Foreground="White" HorizontalAlignment="Left"><Run Text="Продолжительность"/></TextBlock>
+                                <TextBox x:Name="TextBox_order_drb" FontSize="24" Height="60" Width="300" Padding="20,10,0,0" Foreground="#FF818181" Margin="0,0,0,24" HorizontalAlignment="Left">
+                                    <TextBox.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="20"/>
+                                        </Style>
+                                    </TextBox.Resources>
+                                </TextBox>
+                                <TextBlock x:Name="TextBlock_order_time" Width="300" Margin="0,0,0,8" FontSize="28" Foreground="White" HorizontalAlignment="Left"><Run Text="Дата показа"/></TextBlock>
+                                <Border Background="White" Width="300" Height="60" CornerRadius="20" HorizontalAlignment="Left" Margin='0,0,0,14'>
+                                    <DatePicker Width="290" Height="60" Padding="20, 10, 0, 0" HorizontalAlignment="Left" BorderBrush="{x:Null}" FirstDayOfWeek="Monday" DisplayDateStart="2024-01-01" Foreground="#FF818181">
+                                        <DatePicker.Resources>
+                                            <Style TargetType="DatePickerTextBox">
+                                                <Setter Property="Text" Value="  " />
+                                                <Setter Property="FontSize" Value="24" />
+                                            </Style>
+                                        </DatePicker.Resources>
+                                    </DatePicker>
+                                </Border>
+                                <Button Click="Select_2" Height="40" Width="310" Content="Следующий шаг →" FontSize="26"   HorizontalAlignment="Left" Margin="652,20,0,0" Background="{x:Null}" Foreground="#FFADFF00" FontFamily="Inter" BorderBrush="{x:Null}" VerticalAlignment="Bottom"></Button>
+                            </StackPanel>
+                            <StackPanel x:Name="Step_3" Width="930" HorizontalAlignment="Left" Margin="65, 30, 0, 0">
+                                <Border Background="#FF818181" Height="300" CornerRadius="26">
+                                    <StackPanel Margin="36,0,0,0" HorizontalAlignment="Left">
+                                        <TextBlock x:Name="TextBlock_final_order_name" Width="300" Margin="0,5,0,12" FontSize="44" Foreground="#FFADFF00" FontWeight="Bold" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                        <TextBlock x:Name="TextBlock_final_order_prg" Width="300" Margin="0,0,0,8" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                        <TextBlock x:Name="TextBlock_final_order_drb" Width="300" Margin="0,0,0,8" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                        <TextBlock x:Name="TextBlock_final_order_time" Width="300" Margin="0,0,0,12" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                        <TextBlock x:Name="TextBlock_final_order_price" Width="300" Margin="0,0,0,8" FontSize="36" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,30,0,0">
+                                    <Button Content="Отменить" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Right" Background="#818181" Foreground="#FF222222" Margin="0,0,30,0">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="26"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+                                    <Button Content="Отправить" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Right" Background="#FFADFF00" Foreground="#FF222222">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="26"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+                                </StackPanel>
+                                
+                            </StackPanel>
                         </StackPanel>
+                        
                         
                     </Border>
                 </Grid>

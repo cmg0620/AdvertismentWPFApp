@@ -10,7 +10,7 @@
         <StackPanel>
             <TextBlock HorizontalAlignment="Left" Height="100" Margin="27,14,0,0" TextWrapping="Wrap" Text="Внесение изменений в информацию о пользователе" VerticalAlignment="Top" Width="258" FontSize="24" FontFamily="Inter" FontWeight="Bold" Foreground="#FFADFF00"/>
             <TextBlock Width="300" HorizontalAlignment="Center" FontSize="16" Foreground="White" Margin="0,0,0,8">Название организации</TextBlock>
-            <TextBox x:Name="TextBox_org" FontSize="12" Height="30" Width="300" Margin="0,0,0,14" Padding="20,0,0,0" Foreground="#FF818181">
+            <TextBox x:Name="TextBox_org" FontSize="12" Height="30" Width="300" Margin="0,0,0,14" Padding="20,10,0,0" Foreground="#FF818181">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="13"/>
@@ -18,7 +18,7 @@
                 </TextBox.Resources>
             </TextBox>
             <TextBlock Width="300" Margin="0,0,0,8" FontSize="16" Foreground="White"><Run Text="Имя заказчика"/></TextBlock>
-            <TextBox x:Name="TextBox_name" FontSize="12" Height="30" Width="300" Padding="20,0,0,0" Foreground="#FF818181" Margin="0,0,0,14">
+            <TextBox x:Name="TextBox_name" FontSize="12" Height="30" Width="300" Padding="20,10,0,0" Foreground="#FF818181" Margin="0,0,0,14">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="13"/>
@@ -26,7 +26,7 @@
                 </TextBox.Resources>
             </TextBox>
             <TextBlock Width="300" FontSize="16" Foreground="White" Margin="0,0,0,8"><Run Text="Платёжные данные"/></TextBlock>
-            <TextBox x:Name="TextBox_bank" FontSize="12" Height="30" Width="300" Padding="20,0,0,0" Foreground="#FF818181" Margin="0,0,0,14">
+            <TextBox x:Name="TextBox_bank" FontSize="12" Height="30" Width="300" Padding="20,10,0,0" Foreground="#FF818181" Margin="0,0,0,14">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="13"/>
@@ -34,7 +34,7 @@
                 </TextBox.Resources>
             </TextBox>
             <TextBlock Width="300" Foreground="White" FontSize="16" Margin="0,0,0,8"><Run Text="Телефон"/></TextBlock>
-            <TextBox x:Name="TextBox_phone" FontSize="12" Height="30" Width="300" Padding="20,0,0,0" Foreground="#FF818181">
+            <TextBox x:Name="TextBox_phone" FontSize="12" Height="30" Width="300" Padding="20,10,0,0" Foreground="#FF818181">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="13"/>

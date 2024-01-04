@@ -33,10 +33,39 @@ namespace WpfApp1
                 programs.Add(new Program { Name = p.Element("name").Value.ToString(), Price = Int32.Parse(p.Element("price").Value.ToString()), Rate = Int32.Parse(p.Element("rate").Value.ToString()) });
                 count++;
             }
+            Step_2.Visibility = Visibility.Collapsed;
+            Step_3.Visibility = Visibility.Collapsed;
             Subheader_1.Text = "Программы на выбор: " + count.ToString();
             prg.AutoGenerateColumns = false;
             prg.ItemsSource = programs;
+        }
 
+        private void Select(object sender, RoutedEventArgs e)
+        {
+            var c_pr = (Program)prg.SelectedItem;
+
+            if (c_pr != null)
+            {
+                prg.Visibility = Visibility.Collapsed;
+                Button_Select.Visibility = Visibility.Collapsed;
+                Header_Choose_Prg1.Text = "2. Информация о заказе";
+                Subheader_1.Text = "Введите данные о рекламе";
+                Step_2.Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                MessageBox.Show("Не выбрано ни одной программы");
+            }
+        }
+        
+        private void Select_2(object sender, RoutedEventArgs e)
+        {
+            Step_2.Visibility = Visibility.Collapsed;
+            Step_3.Visibility = Visibility.Visible;
+            Header_Choose_Prg1.Text = "3. Проверка данных";
+            Subheader_1.Height = 100;
+            Subheader_1.Text = "После подтверждения заказа Ваша заявка будет отправлена агентам";
         }
         public void CreateText(string name, string org, string bank, string phone)
         {
