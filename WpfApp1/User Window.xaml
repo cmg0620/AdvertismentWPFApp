@@ -8,9 +8,104 @@
         Title="UserWindow" Height="1024" Width="1440"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
+        <Style x:Key="ComboBoxTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border CornerRadius="20,0,0,20"
+                            BorderThickness="1,1,0,1"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="White">
+                                <ScrollViewer x:Name="PART_ContentHost"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ComboBoxButtonStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
 
-
-
+                        <Border 
+                        Background="White" 
+                        x:Name="border" 
+                        CornerRadius="0,20,20,0" 
+                        BorderThickness="0,1,1,1"
+                        BorderBrush="white">
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style  x:Key="RoundComboBox" TargetType="{x:Type ComboBox}">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#FF818181" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition MaxWidth="18"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Name="PART_EditableTextBox"
+                             Style="{StaticResource ComboBoxTextBoxStyle}"
+                             Padding="20,0,0,0"
+                             Height="{TemplateBinding Height}"/>
+                            <ToggleButton Grid.Column="1" Margin="0"
+                            Height="{TemplateBinding Height}"
+                            Style="{StaticResource ComboBoxButtonStyle}"
+                            Focusable="False"
+                            IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            ClickMode="Press">
+                                <Path Grid.Column="1"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Data="M 0 0 L 4 4 L 8 0 Z"
+                                  Fill="#888888" />
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite"
+                            Content="{TemplateBinding SelectionBoxItem}"
+                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            Margin="20,0,0,0"/>
+                            <Popup Name="Popup"
+                            Placement="Bottom"
+                            IsOpen="{TemplateBinding IsDropDownOpen}"
+                            AllowsTransparency="True" 
+                            Focusable="False"
+                            PopupAnimation="Slide"
+                            Margin='20, 0,0,0'>
+                                <Grid Name="DropDown"
+                                SnapsToDevicePixels="True"                
+                                MinWidth="{TemplateBinding ActualWidth}"
+                                MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border 
+                                    x:Name="DropDownBorder"
+                                    BorderThickness="1"
+                                    CornerRadius="20"
+                                    Background="White"
+                                    BorderBrush="White"/>
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="{x:Type ComboBoxItem}" TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="Margin" Value="20, 0,0,0"></Setter>
+        </Style>
 
     </Window.Resources>
     
@@ -216,7 +311,7 @@
                             <Button x:Name="Button_Select" Click="Select" Height="40" Width="310" Content="Следующий шаг →" FontSize="26"   HorizontalAlignment="Left" Margin="700,20,0,0" Background="{x:Null}" Foreground="#FFADFF00" FontFamily="Inter" BorderBrush="{x:Null}" VerticalAlignment="Bottom"></Button>
                             
                             <StackPanel x:Name="Step_2" HorizontalAlignment="Left" Margin="65, 0, 0, 0">
-                                <TextBlock x:Name="TextBlock_order_name" Width="300" Margin="0,0,0,8" FontSize="28" Foreground="White" HorizontalAlignment="Left"><Run Text="Название"/></TextBlock>
+                                <TextBlock x:Name="TextBlock_order_name" Width="300" Margin="0,0,0,24" FontSize="28" Foreground="White" HorizontalAlignment="Left"><Run Text="Название"/></TextBlock>
                                 <TextBox x:Name="TextBox_order_name" FontSize="24" Height="60" Width="900" Padding="20,10,0,0" Foreground="#FF818181" Margin="0,0,0,24" HorizontalAlignment="Left">
                                     <TextBox.Resources>
                                         <Style TargetType="{x:Type Border}">
@@ -225,16 +320,16 @@
                                     </TextBox.Resources>
                                 </TextBox>
                                 <TextBlock x:Name="TextBlock_order_drb" Width="300" Margin="0,0,0,8" FontSize="28" Foreground="White" HorizontalAlignment="Left"><Run Text="Продолжительность"/></TextBlock>
-                                <TextBox x:Name="TextBox_order_drb" FontSize="24" Height="60" Width="300" Padding="20,10,0,0" Foreground="#FF818181" Margin="0,0,0,24" HorizontalAlignment="Left">
-                                    <TextBox.Resources>
-                                        <Style TargetType="{x:Type Border}">
-                                            <Setter Property="CornerRadius" Value="20"/>
-                                        </Style>
-                                    </TextBox.Resources>
-                                </TextBox>
+                                <ComboBox x:Name="ComboBox_order_drb" Style="{DynamicResource RoundComboBox}" Width="300" FontSize="24" Margin="0,0,0,24" BorderBrush="White" Background="White" IsReadOnly="True" Text="jbhu" Height="60" HorizontalAlignment="Left" >
+                                    <ComboBoxItem>15 секунд</ComboBoxItem>
+                                    <ComboBoxItem>30 секунд</ComboBoxItem>
+                                    <ComboBoxItem>40 секунд</ComboBoxItem>
+                                    <ComboBoxItem>60 секунд</ComboBoxItem>
+                                    <ComboBoxItem>90 секунд</ComboBoxItem>
+                                </ComboBox>
                                 <TextBlock x:Name="TextBlock_order_time" Width="300" Margin="0,0,0,8" FontSize="28" Foreground="White" HorizontalAlignment="Left"><Run Text="Дата показа"/></TextBlock>
-                                <Border Background="White" Width="300" Height="60" CornerRadius="20" HorizontalAlignment="Left" Margin='0,0,0,14'>
-                                    <DatePicker Width="290" Height="60" Padding="20, 10, 0, 0" HorizontalAlignment="Left" BorderBrush="{x:Null}" FirstDayOfWeek="Monday" DisplayDateStart="2024-01-01" Foreground="#FF818181">
+                                <Border Background="White" Width="300" Height="60" CornerRadius="20" HorizontalAlignment="Left" Margin='0,0,0,24'>
+                                    <DatePicker x:Name="Data_order" Width="290" Height="60" Padding="20, 10, 0, 0" HorizontalAlignment="Left" BorderBrush="{x:Null}" FirstDayOfWeek="Monday" DisplayDateStart="2024-01-01" Foreground="#FF818181">
                                         <DatePicker.Resources>
                                             <Style TargetType="DatePickerTextBox">
                                                 <Setter Property="Text" Value="  " />
@@ -248,22 +343,22 @@
                             <StackPanel x:Name="Step_3" Width="930" HorizontalAlignment="Left" Margin="65, 30, 0, 0">
                                 <Border Background="#FF818181" Height="300" CornerRadius="26">
                                     <StackPanel Margin="36,0,0,0" HorizontalAlignment="Left">
-                                        <TextBlock x:Name="TextBlock_final_order_name" Width="300" Margin="0,5,0,12" FontSize="44" Foreground="#FFADFF00" FontWeight="Bold" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
-                                        <TextBlock x:Name="TextBlock_final_order_prg" Width="300" Margin="0,0,0,8" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
-                                        <TextBlock x:Name="TextBlock_final_order_drb" Width="300" Margin="0,0,0,8" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
-                                        <TextBlock x:Name="TextBlock_final_order_time" Width="300" Margin="0,0,0,12" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
-                                        <TextBlock x:Name="TextBlock_final_order_price" Width="300" Margin="0,0,0,8" FontSize="36" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                        <TextBlock x:Name="TextBlock_final_order_name" Width="900" Margin="0,5,0,12" FontSize="44" Foreground="#FFADFF00" FontWeight="Bold" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                        <TextBlock x:Name="TextBlock_final_order_prg" Width="900" Margin="0,0,0,8" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                        <TextBlock x:Name="TextBlock_final_order_drb" Width="900" Margin="0,0,0,8" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                        <TextBlock x:Name="TextBlock_final_order_time" Width="900" Margin="0,0,0,12" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                        <TextBlock x:Name="TextBlock_final_order_price" Width="900" Margin="0,0,0,8" FontSize="36" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
                                     </StackPanel>
                                 </Border>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,30,0,0">
-                                    <Button Content="Отменить" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Right" Background="#818181" Foreground="#FF222222" Margin="0,0,30,0">
+                                    <Button Content="Отменить" Click="Button_discard" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Right" Background="#818181" Foreground="#FF222222" Margin="0,0,30,0">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="26"/>
                                             </Style>
                                         </Button.Resources>
                                     </Button>
-                                    <Button Content="Отправить" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Right" Background="#FFADFF00" Foreground="#FF222222">
+                                    <Button Content="Отправить" Click="Button_send" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Right" Background="#FFADFF00" Foreground="#FF222222">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="26"/>
