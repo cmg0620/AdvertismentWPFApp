@@ -85,10 +85,9 @@ namespace WpfApp1
                         string user_id = client.Attribute("id").Value;
                         Console.WriteLine(user_id);
 
-                        UserWindow uw = new UserWindow();
+                        UserWindow uw = new UserWindow(user_id);
                         uw.Show();
                         uw.CreateText(name, org, bank, phone);
-                        uw.Id_Handler(user_id);
                         this.Hide();
                         break;
                     }

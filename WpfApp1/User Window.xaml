@@ -374,11 +374,85 @@
                     </Border>
                 </Grid>
             </TabItem>
-            <TabItem Margin="21,157,-21,-155" Height="85" Width="85">
+            <TabItem Margin="21,157,-21,-155" Height="85" Width="85" FontFamily="Inter">
                 <TabItem.Header>
                     <Image Source="C:\Users\cmg\source\repos\WpfApp1\WpfApp1\история.png" />
                 </TabItem.Header>
-                <Border Width="1233" Background="#FFADFF00" CornerRadius="30,30,30,30" Margin="48,44,61,44" Height="937"/>
+                <Border Width="1233" Background="#FFADFF00" CornerRadius="30,30,30,30" Margin="48,44,61,44" Height="937">
+                    <StackPanel>
+                        <TextBlock Text="История заказов" Height="85" FontSize="64" Margin="110, 54,0,38" FontWeight="Bold"></TextBlock>
+                        <StackPanel Orientation="Vertical" Width="1012" Height="714">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="476" Height="338" Background="#FF222222" CornerRadius="26" Margin="0,0,60,0">
+                                    <ListBox Name="last_order_1" Margin="60,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                        <ListBoxItem x:Name="last_order_1_name" Foreground="#FFADFF00"  FontSize="48" Width="338" Margin="0, 35,0,0" FontWeight="Bold" HorizontalAlignment="Left">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_1_status" Foreground="White" HorizontalAlignment="Left" Margin="0,14,0,0" FontSize="36" FontWeight="Bold">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_1_price" Foreground="White" HorizontalAlignment="Left" Margin="0,7,0,0" FontSize="32">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_1_isagent" Foreground="White" HorizontalAlignment="Left" Margin="0,2,0,0" FontSize="32">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                    </ListBox>
+                                </Border>
+                                <Border Width="476" Height="338" Background="#FF222222" CornerRadius="26">
+                                    <ListBox Name="last_order_2" Margin="60,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                        <ListBoxItem x:Name="last_order_2_name" Foreground="#FFADFF00"  FontSize="48" Width="338" Margin="0, 35,0,0" FontWeight="Bold" HorizontalAlignment="Left">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_2_status" Foreground="White" HorizontalAlignment="Left" Margin="0,14,0,0" FontSize="36" FontWeight="Bold">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_2_price" Foreground="White" HorizontalAlignment="Left" Margin="0,7,0,0" FontSize="32">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_2_isagent" Foreground="White" HorizontalAlignment="Left" Margin="0,2,0,0" FontSize="32">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                    </ListBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0, 38, 0,0">
+                                <Border Width="476" Height="338" Background="#FF222222" CornerRadius="26" Margin="0,0,60,0">
+                                    <ListBox Name="last_order_3" Margin="60,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                        <ListBoxItem x:Name="last_order_3_name" Foreground="#FFADFF00"  FontSize="48" Width="338" Margin="0, 35,0,0" FontWeight="Bold" HorizontalAlignment="Left">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_3_status" Foreground="White" HorizontalAlignment="Left" Margin="0,14,0,0" FontSize="36" FontWeight="Bold">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_3_price" Foreground="White" HorizontalAlignment="Left" Margin="0,7,0,0" FontSize="32">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_3_isagent" Foreground="White" HorizontalAlignment="Left" Margin="0,2,0,0" FontSize="32">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                    </ListBox>
+                                </Border>
+                                <Border Width="476" Height="338" Background="#FF222222" CornerRadius="26">
+                                    <ListBox Name="last_order_4" Margin="60,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                        <ListBoxItem x:Name="last_order_4_name" Foreground="#FFADFF00"  FontSize="48" Width="338" Margin="0, 35,0,0" FontWeight="Bold" HorizontalAlignment="Left">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock></ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_4_status" Foreground="White" HorizontalAlignment="Left" Margin="0,14,0,0" FontSize="36" FontWeight="Bold">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_4_price" Foreground="White" HorizontalAlignment="Left" Margin="0,7,0,0" FontSize="32">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                        <ListBoxItem x:Name="last_order_4_isagent" Foreground="White" HorizontalAlignment="Left" Margin="0,2,0,0" FontSize="32">
+                                            <TextBlock TextWrapping="Wrap">-</TextBlock>
+                                        </ListBoxItem>
+                                    </ListBox>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                </Border>
             </TabItem>
         </TabControl>
         <Button Width="85" Height="85.1" Click="Button_exit" Margin="21,859,1334,80" BorderBrush="{x:Null}" Background="{x:Null}">
