@@ -1,77 +1,77 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <orders>
-    <order>
-        <client_id>1</client_id>
-        <order_id>1</order_id>
-        <show_id>4</show_id>
-		<agent_id>2</agent_id>
-        <date>07.12.2023</date>
-        <name>Новый формат бутылок</name>
-		<price>71000</price>
-		<status>Обработано</status>
-    </order>
-    <order>
-        <client_id>2</client_id>
-        <order_id>2</order_id>
-        <show_id>1</show_id>
-        <date>07.12.2023</date>
-        <name>BDSM-клуб</name>
-		<price>10000</price>
-    </order>
-    <order>
-        <client_id>3</client_id>
-        <order_id>3</order_id>
-        <show_id>2</show_id>
-        <date>08.12.2023</date>
-        <name>Скидки на блины</name>
-		<price>666</price>
-    </order>
-    <order>
-        <client_id>3</client_id>
-        <order_id>4</order_id>
-        <show_id>3</show_id>
-        <date>16.12.2023</date>
-        <name>Новогодние акции</name>
-		<price>11233</price>
-    </order>
-    <order>
-        <client_id>3</client_id>
-        <order_id>5</order_id>
-        <show_id>4</show_id>
-        <date>23.12.2023</date>
-        <name>Успейте забронировать столик</name>
-		<price>19000</price>
-    </order>
-    <order>
-        <client_id>4</client_id>
-        <order_id>6</order_id>
-        <show_id>1</show_id>
-        <date>11.12.2023</date>
-        <name>Проекты домов под ключ</name>
-		<price>5500</price>
-    </order>
-    <order>
-        <client_id>5</client_id>
-        <order_id>7</order_id>
-        <show_id>4</show_id>
-        <date>15.11.2023</date>
-        <name>Муж на час</name>
-		<price>800</price>
-    </order>
-    <order>
-        <client_id>4</client_id>
-        <order_id>8</order_id>
-        <show_id>4</show_id>
-        <date>02.11.2023</date>
-        <name>Распродажа домов</name>
-		<price>1787</price>
-    </order>
-    <order>
-        <client_id>1</client_id>
-        <order_id>9</order_id>
-        <show_id>4</show_id>
-        <date>20.10.2023</date>
-        <name>Новый формат бутылок</name>
-		<price>576</price>
-    </order>
+  <order>
+    <client_id>1</client_id>
+    <order_id>1</order_id>
+    <show_id>4</show_id>
+    <agent_id>2</agent_id>
+    <date>07.12.2023</date>
+    <name>Новый формат бутылок</name>
+    <price>71000</price>
+    <status>Обработано</status>
+  </order>
+  <order>
+    <client_id>2</client_id>
+    <order_id>2</order_id>
+    <show_id>1</show_id>
+    <date>07.12.2023</date>
+    <name>BDSM-клуб</name>
+    <price>10000</price>
+  </order>
+  <order>
+    <client_id>3</client_id>
+    <order_id>3</order_id>
+    <show_id>2</show_id>
+    <date>08.12.2023</date>
+    <name>Скидки на блины</name>
+    <price>666</price>
+  </order>
+  <order>
+    <client_id>3</client_id>
+    <order_id>4</order_id>
+    <show_id>3</show_id>
+    <date>16.12.2023</date>
+    <name>Новогодние акции</name>
+    <price>11233</price>
+  </order>
+  <order>
+    <client_id>3</client_id>
+    <order_id>5</order_id>
+    <show_id>4</show_id>
+    <date>23.12.2023</date>
+    <name>Успейте забронировать столик</name>
+    <price>19000</price>
+  </order>
+  <order>
+    <client_id>4</client_id>
+    <order_id>6</order_id>
+    <show_id>1</show_id>
+    <date>11.12.2023</date>
+    <name>Проекты домов под ключ</name>
+    <price>5500</price>
+  </order>
+  <order>
+    <client_id>5</client_id>
+    <order_id>7</order_id>
+    <show_id>4</show_id>
+    <date>15.11.2023</date>
+    <name>Муж на час</name>
+    <price>800</price>
+  </order>
+  <order>
+    <client_id>4</client_id>
+    <order_id>8</order_id>
+    <show_id>4</show_id>
+    <date>02.11.2023</date>
+    <name>Распродажа домов</name>
+    <price>1787</price>
+  </order>
+  <order>
+    <client_id>1</client_id>
+    <order_id>9</order_id>
+    <show_id>4</show_id>
+    <date>20.10.2023</date>
+    <name>Новый формат бутылок</name>
+    <price>576</price>
+  </order>
 </orders>

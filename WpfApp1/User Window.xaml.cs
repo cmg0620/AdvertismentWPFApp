@@ -53,36 +53,11 @@ namespace WpfApp1
         public string order_Name;
         public string order_Time;
         public string order_Drb;
-        
-  
 
-        public void Select(object sender, RoutedEventArgs e)
-        {
-            var c_pr = (Program)prg.SelectedItem;
-
-            if (c_pr != null)
-            {
-
-                prg.Visibility = Visibility.Collapsed;
-                Button_Select.Visibility = Visibility.Collapsed;
-                Header_Choose_Prg1.Text = "2. Информация о заказе";
-                Subheader_1.Text = "Введите данные о рекламе";
-                Step_2.Visibility = Visibility.Visible;
-                c_pr_Name = c_pr.Name;
-                c_pr_Price = c_pr.Price;
-                c_pr_Rate = c_pr.Rate;
-
-
-            }
-            else
-            {
-                MessageBox.Show("Не выбрано ни одной программы");
-            }
-        }
-
+        XDocument base_orders = XDocument.Load("..\\..\\orders.xml");
         public void Load_Last_Orders()
         {
-            XDocument base_orders = XDocument.Load("..\\..\\orders.xml");
+            
             var orders = base_orders.Element("orders");
             List<Orders> orders_list = new List<Orders>();
 
@@ -93,7 +68,7 @@ namespace WpfApp1
             Dictionary<int, List<TextBlock>> last_prp_dict = new Dictionary<int, List<TextBlock>>();
 
             var items_1 = last_order_1.Items;
-            
+
             foreach (var item in items_1)
             {
                 var ListBoxItem = item as ListBoxItem;
@@ -118,7 +93,7 @@ namespace WpfApp1
             }
 
             var items_4 = last_order_4.Items;
-            foreach ( var item in items_4)
+            foreach (var item in items_4)
             {
                 var ListBoxItem = item as ListBoxItem;
                 var itemSP = ListBoxItem.Content as TextBlock;
@@ -139,7 +114,7 @@ namespace WpfApp1
                 {
                     Console.WriteLine("UID совпал");
                     Console.WriteLine("It ok");
-                    if (p.Element("status") !=null && p.Element("status").Value.ToString()== "Завершен")
+                    if (p.Element("status") != null && p.Element("status").Value.ToString() == "Завершен")
                     {
                         orders_list.Add(new Orders { Client_id = p.Element("client_id").Value.ToString(), Order_id = p.Element("order_id").Value.ToString(), Order_name = p.Element("name").Value.ToString(), Show_date = p.Element("date").Value.ToString(), Show_id = p.Element("show_id").Value.ToString(), Is_agent = p.Element("agent_id").Value.ToString(), Order_price = p.Element("price").Value.ToString(), Order_status = p.Element("status").Value.ToString() });
 
@@ -182,6 +157,44 @@ namespace WpfApp1
 
         }
 
+        Orders current_order = new Orders();
+        XDocument base_shows = XDocument.Load("..\\..\\shows.xml");
+        public void Select(object sender, RoutedEventArgs e)
+        {
+            var c_pr = (Program)prg.SelectedItem;
+
+            if (c_pr != null)
+            {
+                
+                current_order.Client_id = UID;
+                prg.Visibility = Visibility.Collapsed;
+                Button_Select.Visibility = Visibility.Collapsed;
+                Header_Choose_Prg1.Text = "2. Информация о заказе";
+                Subheader_1.Text = "Введите данные о рекламе";
+                Step_2.Visibility = Visibility.Visible;
+                c_pr_Name = c_pr.Name;
+                c_pr_Price = c_pr.Price;
+                c_pr_Rate = c_pr.Rate;
+                
+                var shows = base_shows.Element("shows");
+                foreach (XElement p in shows.Elements("show"))
+                {
+                    if (p.Element("name").Value.ToString() == c_pr_Name)
+                    {
+                        current_order.Show_id = p.Element("id").Value.ToString();
+                    }
+                }
+                current_order.Order_id = base_shows.Element("shows").Elements("show").Last().Element("id").ToString();
+                Console.WriteLine(current_order.Order_id);
+            }
+            else
+            {
+                MessageBox.Show("Не выбрано ни одной программы");
+            }
+        }
+
+        
+
         private void Select_2(object sender, RoutedEventArgs e)
         {
 
@@ -189,8 +202,8 @@ namespace WpfApp1
             {
                 Step_2.Visibility = Visibility.Collapsed;
                 Step_3.Visibility = Visibility.Visible;
-                order_Time = Data_order.SelectedDate.Value.Date.ToString().Replace("0:00:00", "");
-                order_Name = TextBox_order_name.Text;
+                current_order.Show_date = Data_order.SelectedDate.Value.Date.ToString().Replace("0:00:00", "");
+                current_order.Order_name = TextBox_order_name.Text;
                 order_Drb = ComboBox_order_drb.Text;
                 Header_Choose_Prg1.Text = "3. Проверка данных";
                 Subheader_1.Height = 100;
@@ -200,7 +213,8 @@ namespace WpfApp1
                 TextBlock_final_order_drb.Text = "Продолжительность: " + order_Drb;
                 TextBlock_final_order_time.Text = "Дата показа: " + order_Time;
                 int order_min = Int32.Parse(order_Drb.Replace(" секунд", ""));
-                TextBlock_final_order_price.Text = "Стоимость: " + (c_pr_Price * order_min / 60).ToString() + "Р";
+                current_order.Order_price = (c_pr_Price * order_min / 60).ToString();
+                TextBlock_final_order_price.Text = "Стоимость: " + current_order.Order_price + "Р";
             }
             else
             {
@@ -221,7 +235,16 @@ namespace WpfApp1
 
         private void Button_send(object sender, RoutedEventArgs e)
         {
+            XElement root = new XElement("order");
+            root.Add(new XElement("client_id", current_order.Client_id));
+            root.Add(new XElement("order_id", current_order.Order_id));
+            root.Add(new XElement("show_id", current_order.Show_id));
+            root.Add(new XElement("date", current_order.Show_date));
+            root.Add(new XElement("name", current_order.Order_name));
+            root.Add(new XElement("price", current_order.Order_price));
             MessageBox.Show("Отправлено");
+            base_orders.Element("orders").Add(root);
+            base_orders.Save("..\\..\\orders.xml");
         }
 
         public void CreateText(string name, string org, string bank, string phone)
@@ -256,13 +279,13 @@ namespace WpfApp1
         }
         public class Orders
         {
-            public string Client_id { get; set; }
-            public string Order_id { get; set; }
-            public string Show_id { get; set; }
-            public string Order_name { get; set; }
-            public string Show_date { get; set; }
+            public string Client_id { get; set; } 
+            public string Order_id { get; set; } 
+            public string Show_id { get; set; } 
+            public string Order_name { get; set; } 
+            public string Show_date { get; set; } 
             public string Order_status { get; set; }
-            public string Order_price { get; set; }
+            public string Order_price { get; set; } 
             public string Is_agent { get; set; }
         }
     }
