@@ -3,18 +3,24 @@
     <agent>
         <agent_id>1</agent_id>
         <name>Маркелов Дмитрий</name>
+		<bank>1567 7563 7687 0909</bank>
+		<phone>89056772389</phone>
         <salary>0</salary>
 		<password>12345</password>
     </agent>
     <agent>
         <agent_id>2</agent_id>
         <name>Даниил Чернов</name>
+		<bank>3355 7524 1256 1237</bank>
+		<phone>84997111823</phone>
         <salary>0</salary>
 		<password>56789</password>
     </agent>
     <agent>
         <agent_id>3</agent_id>
         <name>Рыбакова Татьяна</name>
+		<bank>8907 3457 2534 1777</bank>
+		<phone>89345671243</phone>
         <salary>0</salary>
 		<password>90123</password>
     </agent>

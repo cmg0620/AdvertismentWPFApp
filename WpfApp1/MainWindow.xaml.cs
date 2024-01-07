@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -57,8 +58,7 @@ namespace WpfApp1
             var clients = base_clients.Element("clients");
             var agents = base_agents.Element("agents");
 
-            if (!is_agent){
-
+    
                 foreach (XElement client in clients.Elements("client"))
                 {
                     if (client.Element("name").Value == login)
@@ -92,9 +92,8 @@ namespace WpfApp1
                         break;
                     }
                 }
-            }
-            else
-            {
+
+ 
                 Console.WriteLine("Agent");
                 foreach (XElement agent in agents.Elements("agent"))
                 {
@@ -121,13 +120,17 @@ namespace WpfApp1
                     }
                     if ((agent.Element("password").Value == password) && (agent.Element("name").Value == login))
                     {
-
-                        break;
+                    Agent_Window aw = new Agent_Window();
+                    aw.Show();
+                    //aw.CreateText(name, org, bank, phone);
+                    this.Hide();
+                    break;
+                        
                     }
 
-                }
+                
 
-            }
+                }
         }
 
 

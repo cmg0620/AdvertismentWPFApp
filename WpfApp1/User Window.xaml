@@ -146,7 +146,7 @@
 
 
                 <Grid>
-                    <Border Width="1233" Background="#FFADFF00" CornerRadius="30,30,30,30" Margin="50,44,61,44" Height="937">
+                    <Border Width="1233" Background="#FFADFF00" CornerRadius="30,30,30,30" Margin="50,44,61,44" Height="930">
                         <TextBlock Text="Профиль заказчика" FontSize="72" Foreground="Black" Margin="80,90,407,747" Height="100" FontFamily="Inter" FontWeight="Bold"/>
                     </Border>
                     <Border Width="1072" Height="197"  Background="#FF222222"  CornerRadius="30,30,30,30" Margin="130,272,142,551">
@@ -178,10 +178,10 @@
                     <Image Source="C:\Users\cmg\source\repos\WpfApp1\WpfApp1\заказ.png" />
                 </TabItem.Header>
                 <Grid>
-                    <Border Width="1233" Background="#FFADFF00" CornerRadius="30,30,30,30" Margin="50,44,61,44" Height="937">
-                        <TextBlock Text="Заказать рекламу" FontSize="72" Foreground="Black" Margin="80,90,407,747" Height="100" FontFamily="Inter" FontWeight="Bold"/>
+                    <Border Width="1233" Background="#FFADFF00" CornerRadius="30,30,30,30" Margin="50,44,61,44" Height="930">
+                        <TextBlock Text="Заказать рекламу" FontSize="72" Foreground="Black" Margin="80,50,407,747" Height="100" FontFamily="Inter" FontWeight="Bold"/>
                     </Border>
-                    <Border Width="1072" Height="698"  Background="#FF222222"  CornerRadius="30,30,30,30" Margin="130,250,142,71">
+                    <Border Width="1072" Height="698"  Background="#FF222222"  CornerRadius="30,30,30,30" Margin="130,200,142,71">
                         <StackPanel Margin="0,30,0,0">
                             <TextBlock x:Name="Header_Choose_Prg1" Text="1. Выбор передачи" FontSize="48" Foreground="White" FontWeight="Bold" Width="961" Height="72" HorizontalAlignment="Left" Margin="65,0,0,10"/>
                             <TextBlock x:Name="Subheader_1" FontSize="36" Foreground="White"  TextWrapping="Wrap" FontWeight="Bold" Width="920" Height="52" Margin="65,0,0,0" HorizontalAlignment="Left"/>
@@ -378,7 +378,7 @@
                 <TabItem.Header>
                     <Image Source="C:\Users\cmg\source\repos\WpfApp1\WpfApp1\история.png" />
                 </TabItem.Header>
-                <Border Width="1233" Background="#FFADFF00" CornerRadius="30,30,30,30" Margin="48,44,61,44" Height="937">
+                <Border Width="1233" Background="#FFADFF00" CornerRadius="30,30,30,30" Margin="48,44,61,44" Height="930">
                     <StackPanel>
                         <TextBlock Text="История заказов" Height="85" FontSize="64" Margin="110, 54,0,38" FontWeight="Bold"></TextBlock>
                         <StackPanel Orientation="Vertical" Width="1012" Height="714">
