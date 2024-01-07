@@ -146,10 +146,10 @@ namespace WpfApp1
 
                     for (int i = 0; i < orders_list.Count; i++)
                     {
-                        last_prp_dict[i][0].Text = orders_list[i].Order_name;
-                        last_prp_dict[i][1].Text = orders_list[i].Order_status;
-                        last_prp_dict[i][2].Text = orders_list[i].Show_date;
-                        last_prp_dict[i][3].Text = orders_list[i].Order_price + "Р";
+                        last_prp_dict[i%4][0].Text = orders_list[i].Order_name;
+                        last_prp_dict[i%4][1].Text = orders_list[i].Order_status;
+                        last_prp_dict[i%4][2].Text = orders_list[i].Show_date;
+                        last_prp_dict[i%4][3].Text = orders_list[i].Order_price + "Р";
                     }
                 }
             }
@@ -184,7 +184,8 @@ namespace WpfApp1
                         current_order.Show_id = p.Element("id").Value.ToString();
                     }
                 }
-                current_order.Order_id = base_shows.Element("shows").Elements("show").Last().Element("id").ToString();
+                var get_last_oder_id = base_orders.Element("orders").Elements("order").Last().Element("order_id").Value.ToString();
+                current_order.Order_id = (Int32.Parse(get_last_oder_id) + 1).ToString();
                 Console.WriteLine(current_order.Order_id);
             }
             else
@@ -208,10 +209,10 @@ namespace WpfApp1
                 Header_Choose_Prg1.Text = "3. Проверка данных";
                 Subheader_1.Height = 100;
                 Subheader_1.Text = "После подтверждения заказа Ваша заявка будет отправлена агентам";
-                TextBlock_final_order_name.Text = order_Name;
+                TextBlock_final_order_name.Text = current_order.Order_name;
                 TextBlock_final_order_prg.Text = "Будет показан в передаче: " + c_pr_Name;
                 TextBlock_final_order_drb.Text = "Продолжительность: " + order_Drb;
-                TextBlock_final_order_time.Text = "Дата показа: " + order_Time;
+                TextBlock_final_order_time.Text = "Дата показа: " + current_order.Show_date;
                 int order_min = Int32.Parse(order_Drb.Replace(" секунд", ""));
                 current_order.Order_price = (c_pr_Price * order_min / 60).ToString();
                 TextBlock_final_order_price.Text = "Стоимость: " + current_order.Order_price + "Р";
@@ -223,7 +224,7 @@ namespace WpfApp1
 
         }
 
-        private void Button_discard(object sender, RoutedEventArgs e)
+        public void Discard()
         {
             Step_3.Visibility = Visibility.Collapsed;
             prg.Visibility = Visibility.Visible;
@@ -231,6 +232,10 @@ namespace WpfApp1
             Header_Choose_Prg1.Text = "1. Выбор передачи";
             Button_Select.Visibility = Visibility.Visible;
             Subheader_1.Height = 52;
+        }
+        public void Button_discard(object sender, RoutedEventArgs e)
+        {
+            Discard();
         }
 
         private void Button_send(object sender, RoutedEventArgs e)
@@ -245,6 +250,7 @@ namespace WpfApp1
             MessageBox.Show("Отправлено");
             base_orders.Element("orders").Add(root);
             base_orders.Save("..\\..\\orders.xml");
+            Discard();
         }
 
         public void CreateText(string name, string org, string bank, string phone)

@@ -74,4 +74,20 @@
     <name>Новый формат бутылок</name>
     <price>576</price>
   </order>
+  <order>
+    <client_id>3</client_id>
+    <order_id>10</order_id>
+    <show_id>2</show_id>
+    <date>11.01.2024 </date>
+    <name>заказ 1</name>
+    <price>300000</price>
+  </order>
+  <order>
+    <client_id>3</client_id>
+    <order_id>11</order_id>
+    <show_id>3</show_id>
+    <date>19.01.2024 </date>
+    <name>Тестовый заказ 2</name>
+    <price>500</price>
+  </order>
 </orders>
