@@ -6,6 +6,106 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="Agent_Window" Height="1024" Width="1440">
+    <Window.Resources>
+        <Style x:Key="ComboBoxTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border CornerRadius="20,0,0,20"
+                     BorderThickness="1,1,0,1"
+                     Background="{TemplateBinding Background}"
+                     BorderBrush="White">
+                                <ScrollViewer x:Name="PART_ContentHost"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ComboBoxButtonStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+
+                        <Border 
+                 Background="White" 
+                 x:Name="border" 
+                 CornerRadius="0,20,20,0" 
+                 BorderThickness="0,1,1,1"
+                 BorderBrush="white">
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style  x:Key="RoundComboBox" TargetType="{x:Type ComboBox}">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#FF818181" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition MaxWidth="18"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Name="PART_EditableTextBox"
+                      Style="{StaticResource ComboBoxTextBoxStyle}"
+                      Padding="20,0,0,0"
+                      Height="{TemplateBinding Height}"/>
+                            <ToggleButton Grid.Column="1" Margin="0"
+                     Height="{TemplateBinding Height}"
+                     Style="{StaticResource ComboBoxButtonStyle}"
+                     Focusable="False"
+                     IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                     ClickMode="Press">
+                                <Path Grid.Column="1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Data="M 0 0 L 4 4 L 8 0 Z"
+                           Fill="#888888" />
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite"
+                     Content="{TemplateBinding SelectionBoxItem}"
+                     ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                     ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="20,0,0,0"/>
+                            <Popup Name="Popup"
+                     Placement="Bottom"
+                     IsOpen="{TemplateBinding IsDropDownOpen}"
+                     AllowsTransparency="True" 
+                     Focusable="False"
+                     PopupAnimation="Slide"
+                     Margin='20, 0,0,0'>
+                                <Grid Name="DropDown"
+                         SnapsToDevicePixels="True"                
+                         MinWidth="{TemplateBinding ActualWidth}"
+                         MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border 
+                             x:Name="DropDownBorder"
+                             BorderThickness="1"
+                             CornerRadius="20"
+                             Background="White"
+                             BorderBrush="White"/>
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="{x:Type ComboBoxItem}" TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="Margin" Value="20, 0,0,0"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid Background="#FF222222" Width="1440" Height="1024">
 
         <TabControl Background="#FF222222" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" TabStripPlacement="Left"  BorderBrush="{x:Null}" Foreground="{x:Null}">
@@ -63,7 +163,7 @@
                             <TextBlock x:Name="TextBlock_phone" Text="8 000 000 0000" FontSize="36" Foreground="#FAFF00" Width="400" Height="52" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Border>
-                    <Button Height="50"  Margin="790,859,142,111" Content="Редактировать информацию →" FontSize="26" BorderBrush="#FAFF00" Background="#FAFF00" FontFamily="Inter" FontWeight="Bold" BorderThickness="0,0,0,0"/>
+                    <Button Click="Change_info" Height="50"  Margin="790,859,142,111" Content="Редактировать информацию →" FontSize="26" BorderBrush="#FAFF00" Background="#FAFF00" FontFamily="Inter" FontWeight="Bold" BorderThickness="0,0,0,0"/>
                 </Grid>
 
             </TabItem>
@@ -77,7 +177,7 @@
                     </Border>
                     <Border Width="1072" Height="698"  Background="#FF222222"  CornerRadius="30,30,30,30" Margin="130,200,142,71">
                         <StackPanel Margin="0,30,0,0">
-                            <TextBlock x:Name="Header_Choose_Prg1" Text="1. Выбор передачи" FontSize="48" Foreground="White" FontWeight="Bold" Width="961" Height="72" HorizontalAlignment="Left" Margin="65,0,0,10"/>
+                            <TextBlock x:Name="Header_Choose_Client" Text="1. Выбор передачи" FontSize="48" Foreground="White" FontWeight="Bold" Width="961" Height="72" HorizontalAlignment="Left" Margin="65,0,0,10"/>
                             
 
                             <DataGrid SelectedItem="" Style="{DynamicResource DataGridStyle}" RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCell1}" HeadersVisibility="Column" Name="prg" Height="400" SelectionUnit="FullRow" SelectionMode="Single" VerticalGridLinesBrush="{x:Null}" HorizontalGridLinesBrush="{x:Null}" Margin="0,31,0,0" Width="949" CanUserReorderColumns="False" CanUserResizeRows="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Auto" Foreground="#FF969696" BorderBrush="{x:Null}" FontSize="22" FontWeight="Bold" CanUserAddRows="False">
@@ -148,7 +248,7 @@
                                                 <Setter Property="Background" Value="#FAFF00"/>
                                             </Trigger>
                                             <Trigger Property="IsSelected" Value="True">
-                                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                                <Setter Property="Foreground" Value="#FF222222"/>
                                                 <Setter Property="Background" Value="#FAFF00"/>
                                             </Trigger>
                                         </Style.Triggers>
@@ -159,7 +259,7 @@
                                 </DataGrid.Resources>
 
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Клиент" CanUserResize="False" IsReadOnly="True" Binding="{Binding Name}"  Width="*">
+                                    <DataGridTextColumn Header="Клиент" CanUserResize="False" IsReadOnly="True" Binding="{Binding Order_name}"  Width="*">
                                         <DataGridTextColumn.CellStyle>
                                             <Style TargetType="DataGridCell">
                                                 <Setter Property="BorderThickness" Value="0 0 0 0" />
@@ -172,7 +272,7 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Дата" CanUserResize="False" IsReadOnly="True" Binding="{Binding Rate}" Width="*">
+                                    <DataGridTextColumn Header="Дата" CanUserResize="False" IsReadOnly="True" Binding="{Binding Order_date}" Width="*">
                                         <DataGridTextColumn.CellStyle>
                                             <Style TargetType="DataGridCell">
                                                 <Setter Property="BorderThickness" Value="0 0 0 0" />
@@ -185,7 +285,7 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Стоимость" CanUserResize="False" IsReadOnly="True" Binding="{Binding Price}" Width="*">
+                                    <DataGridTextColumn Header="Стоимость" CanUserResize="False" IsReadOnly="True" Binding="{Binding Order_price}" Width="*">
                                         <DataGridTextColumn.CellStyle>
                                             <Style TargetType="DataGridCell">
                                                 <Setter Property="BorderThickness" Value="0 0 0 0" />
@@ -201,7 +301,7 @@
                                 </DataGrid.Columns>
 
                             </DataGrid>
-                            <Button Content="В работу" Margin="710,20,0,0" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Left" Background="#FFFAFF00" Foreground="#FF222222" HorizontalContentAlignment="Center">
+                            <Button x:Name="In_work" Content="В работу" Click="Button_in_work" Margin="710,20,0,0" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Left" Background="#FFFAFF00" Foreground="#FF222222" HorizontalContentAlignment="Center">
                                 <Button.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="26"/>
@@ -214,7 +314,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Border Background="#FF818181" Height="400" CornerRadius="26" Width="438">
                                         <StackPanel Margin="36,0,0,0" HorizontalAlignment="Left">
-                                            <TextBlock x:Name="TextBlock_order_name" TextWrapping="Wrap" Width="375" Margin="0,5,0,12" FontSize="44" Foreground="#FFFAFF00" FontWeight="Bold" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                            <TextBlock x:Name="TextBlock_order_name" TextWrapping="Wrap" Width="375" Margin="0,30,0,12" FontSize="44" Foreground="#FFFAFF00" FontWeight="Bold" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
                                             <TextBlock x:Name="TextBlock_show_name" TextWrapping="Wrap" Width="375" Margin="0,0,0,8" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
                                             <TextBlock x:Name="TextBlock_show_date" TextWrapping="Wrap" Width="375" Margin="0,0,0,8" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
                                             <TextBlock x:Name="TextBlock_order_price" TextWrapping="Wrap" Width="375" Margin="0,0,0,8" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
@@ -222,7 +322,7 @@
                                     </Border>
                                     <Border Background="#FF818181" Height="400" CornerRadius="26" Width="438" Margin="60,0,0,0">
                                         <StackPanel Margin="36,0,0,0" HorizontalAlignment="Left">
-                                            <TextBlock x:Name="TextBlock_client_name" TextWrapping="Wrap" Width="375" Margin="0,5,0,12" FontSize="44" Foreground="#FFFAFF00" FontWeight="Bold" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
+                                            <TextBlock x:Name="TextBlock_client_name" TextWrapping="Wrap" Width="375" Margin="0,30,0,12" FontSize="44" Foreground="#FFFAFF00" FontWeight="Bold" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
                                             <TextBlock x:Name="TextBlock_client_bank" TextWrapping="Wrap" Width="375" Margin="0,0,0,8" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
                                             <TextBlock x:Name="TextBlock_client_phone" TextWrapping="Wrap" Width="375" Margin="0,0,0,12" FontSize="32" Foreground="White" HorizontalAlignment="Left"><Run Text="Время показа"/></TextBlock>
                                         </StackPanel>
@@ -230,14 +330,14 @@
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,30,0,0">
-                                    <Button Content="Отменить" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Right" Background="#818181" Foreground="#FF222222" Margin="0,0,30,0">
+                                    <Button Content="Отменить" Click="Button_back" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Right" Background="#818181" Foreground="#FF222222" Margin="0,0,30,0">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="26"/>
                                             </Style>
                                         </Button.Resources>
                                     </Button>
-                                    <Button Content="Закрыть сделку" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Right" Background="#FFFAFF00" Foreground="#FF222222">
+                                    <Button Content="Закрыть сделку" Click="Button_comp_deal" FontSize="32" FontWeight="Bold" Width="300" Height="76" HorizontalAlignment="Right" Background="#FFFAFF00" Foreground="#FF222222">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="26"/>
@@ -268,86 +368,31 @@
                         <TextBlock Text="Доходы" FontSize="72" Foreground="Black" Margin="80,50,407,747" Height="100" FontFamily="Inter" FontWeight="Bold"/>
                     </Border>
                     <Border Width="1072" Height="698"  Background="#FF222222"  CornerRadius="30,30,30,30" Margin="130,200,142,71">
-                        <StackPanel Margin="0,30,0,0">
-                            <TextBlock Text="Выберите период" FontSize="48"  Foreground="White" FontWeight="Bold" Width="961" Height="72" HorizontalAlignment="Left" Margin="65,0,0,10"/>
-                            <TabControl Height="500" Width="949" FontSize="32" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}">
-                                <TabControl.Resources>
-                                    <Style TargetType="TabItem">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="TabItem">
-                                                    <Border Name="Border" BorderThickness="0,0,0,0" BorderBrush="Gainsboro" CornerRadius="20,20,20,20" Margin="0,0, 20, 0">
-                                                        <ContentPresenter x:Name="ContentSite"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        ContentSource="Header"
-                                        Margin="20,12"/>
-                                                    </Border>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="IsSelected" Value="True">
-                                                            <Setter TargetName="Border" Property="Background" Value="#FFFAFF00" />
-                                                            <Setter Property="Foreground" Value="#222222"/>
-                                                        </Trigger>
-                                                        <Trigger Property="IsSelected" Value="False">
-                                                            <Setter TargetName="Border" Property="Background" Value="#818181" />
-                                                            <Setter Property="Foreground" Value="#222222"/>
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </TabControl.Resources>
-                                <TabItem Header="ноябрь 2023">
-                                    <StackPanel Margin="0,50,0,0">
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
-                                            <TextBlock Text="Заработано: " Foreground="White" FontSize="46"></TextBlock>
-                                            <TextBlock Text="200000" Foreground="#FFFAFF00" FontSize="46"></TextBlock>
+                        <StackPanel Margin="65,40,0,0">
+                            <TextBlock Text="Выберите период" FontSize="48"  Foreground="White" FontWeight="Bold" Width="961" Height="72" HorizontalAlignment="Left"/>
+
+                            <StackPanel Margin="0,10,0,0">
+                                        <ComboBox x:Name="month_picker" SelectionChanged="month_picker_selection_changed" Style="{DynamicResource RoundComboBox}" Width="300" FontSize="24"  BorderBrush="White" Background="White" IsReadOnly="True" Text="jbhu" Height="60" HorizontalAlignment="Left">
+
+                                        </ComboBox>
+                                        <StackPanel Orientation="Horizontal" Margin="0,50,0,30">
+                                            <TextBlock Text="Заработано: " Foreground="White" FontSize="48" FontWeight="Bold"></TextBlock>
+                                            <TextBlock x:Name="salary" Text="-" Foreground="#FFFAFF00" FontSize="48" FontWeight="Bold"></TextBlock>
                                         </StackPanel>
-                                        <TextBlock Text="Сделок:" Foreground="White"/>
-                                        <TextBlock Text="10" Foreground="#FFFAFF00"/>
-                                        <TextBlock Text="Уникальных клиентов:" Foreground="White"/>
-                                        <TextBlock Text="4" Foreground="#FFFAFF00"/>
-                                        <TextBlock Text="Топовый проект:" Foreground="White"/>
-                                        <TextBlock Text="4" Foreground="#FFFAFF00"/>
+                                <TextBlock Text="Сделок:"  FontSize="46" Foreground="White"/>
+                                <TextBlock x:Name="deals" Text="-"  FontSize="46" Foreground="#FFFAFF00"/>
+                                <TextBlock Text="Топовый проект:"  FontSize="46" Foreground="White"/>
+                                <TextBlock x:Name="top" Text="-"  FontSize="46" Foreground="#FFFAFF00"/>
+                                <TextBlock x:Name="top_client" Text="-"  FontSize="46" Foreground="#FFFAFF00"/>
                                     </StackPanel>
 
-                                </TabItem>
-                                <TabItem Header="декабрь 2023">
-                                    <StackPanel Margin="0,50,0,0">
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
-                                            <TextBlock Text="Заработано: " Foreground="White" FontSize="46"></TextBlock>
-                                            <TextBlock Text="200000" Foreground="#FFFAFF00" FontSize="46"></TextBlock>
-                                        </StackPanel>
-                                        <TextBlock Text="Сделок:" Foreground="White"/>
-                                        <TextBlock Text="10" Foreground="#FFFAFF00"/>
-                                        <TextBlock Text="Уникальных клиентов:" Foreground="White"/>
-                                        <TextBlock Text="4" Foreground="#FFFAFF00"/>
-                                        <TextBlock Text="Топовый проект:" Foreground="White"/>
-                                        <TextBlock Text="4" Foreground="#FFFAFF00"/>
-                                    </StackPanel>
-                                </TabItem>
-                                <TabItem Header="декабрь 2023">
-                                    <StackPanel Margin="0,50,0,0">
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
-                                            <TextBlock Text="Заработано: " Foreground="White" FontSize="46"></TextBlock>
-                                            <TextBlock Text="200000" Foreground="#FFFAFF00" FontSize="46"></TextBlock>
-                                        </StackPanel>
-                                        <TextBlock Text="Сделок:" Foreground="White"/>
-                                        <TextBlock Text="10" Foreground="#FFFAFF00"/>
-                                        <TextBlock Text="Уникальных клиентов:" Foreground="White"/>
-                                        <TextBlock Text="4" Foreground="#FFFAFF00"/>
-                                        <TextBlock Text="Топовый проект:" Foreground="White"/>
-                                        <TextBlock Text="4" Foreground="#FFFAFF00"/>
-                                    </StackPanel>
-                                </TabItem>
-                            </TabControl>
+                                
                         </StackPanel>
                     </Border>
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Width="85" Height="85.1"  Margin="21,859,1334,80" BorderBrush="{x:Null}" Background="{x:Null}">
+        <Button Click="Button_exit" Width="85" Height="85.1"  Margin="21,859,1334,80" BorderBrush="{x:Null}" Background="{x:Null}">
             <Image Source="C:\Users\cmg\source\repos\WpfApp1\WpfApp1\выход.png" Width="75"></Image>
         </Button>
     </Grid>

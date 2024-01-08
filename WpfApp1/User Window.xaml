@@ -255,7 +255,7 @@
                                                 <Setter Property="Background" Value="#FFADFF00"/>
                                             </Trigger>
                                             <Trigger Property="IsSelected" Value="True">
-                                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                                <Setter Property="Foreground" Value="#FF222222"/>
                                                 <Setter Property="Background" Value="#FFADFF00"/>
                                             </Trigger>
                                         </Style.Triggers>

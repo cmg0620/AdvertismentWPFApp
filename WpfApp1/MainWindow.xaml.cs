@@ -36,12 +36,6 @@ namespace WpfApp1
         XDocument base_shows = XDocument.Load("C:\\Users\\cmg\\source\\repos\\WpfApp1\\WpfApp1\\shows.xml");
         XDocument base_agents = XDocument.Load("C:\\Users\\cmg\\source\\repos\\WpfApp1\\WpfApp1\\agents.xml");
 
-        bool is_agent = false;
-        public void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            is_agent = true;
-
-        }
 
         private void TextBox_login_MouseDown(object sender, MouseEventArgs e)
         {
@@ -58,7 +52,6 @@ namespace WpfApp1
             var clients = base_clients.Element("clients");
             var agents = base_agents.Element("agents");
 
-    
                 foreach (XElement client in clients.Elements("client"))
                 {
                     if (client.Element("name").Value == login)
@@ -85,7 +78,7 @@ namespace WpfApp1
                         string user_id = client.Attribute("id").Value;
                         Console.WriteLine(user_id);
 
-                        UserWindow uw = new UserWindow(user_id);
+                        UserWindow uw = new UserWindow(user_id, name);
                         uw.Show();
                         uw.CreateText(name, org, bank, phone);
                         this.Hide();
@@ -120,9 +113,14 @@ namespace WpfApp1
                     }
                     if ((agent.Element("password").Value == password) && (agent.Element("name").Value == login))
                     {
-                    Agent_Window aw = new Agent_Window();
+                    var id = agent.Element("agent_id").Value.ToString();
+                    var name = agent.Element("name").Value.ToString();
+                    var org = "Телеком Сервис";
+                    var bank = agent.Element("bank").Value.ToString();
+                    var phone = agent.Element("phone").Value.ToString();
+                    Agent_Window aw = new Agent_Window(id, name);
                     aw.Show();
-                    //aw.CreateText(name, org, bank, phone);
+                    aw.CreateText(name, org, bank, phone);
                     this.Hide();
                     break;
                         

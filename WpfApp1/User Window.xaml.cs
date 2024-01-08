@@ -26,7 +26,8 @@ namespace WpfApp1
     {
         public int count;
         public string UID;
-        public UserWindow(string uID)
+        public string User_name;
+        public UserWindow(string uID, string user_name)
         {
             InitializeComponent();
             XDocument base_shows = XDocument.Load("..\\..\\shows.xml");
@@ -45,7 +46,7 @@ namespace WpfApp1
             prg.ItemsSource = programs;
             UID = uID;
             Load_Last_Orders();
-            
+            User_name = user_name;
         }
         public string c_pr_Name;
         public int c_pr_Rate;
@@ -272,6 +273,7 @@ namespace WpfApp1
         private void Button_exit(object sender, RoutedEventArgs e)
         {
             MainWindow mw = new MainWindow();
+            mw.user_name.Text = User_name + "!";
             mw.Show();
             this.Hide();
         }

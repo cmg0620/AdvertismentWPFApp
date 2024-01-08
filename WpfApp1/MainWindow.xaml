@@ -21,7 +21,7 @@
         <Border Width="1226" Height="740" Background="#FF222222" CornerRadius="30,30,30,30" Margin="107,134,107,134" Grid.RowSpan="2">
             <StackPanel HorizontalAlignment="Left" Margin="75,67,0,0">
                 <TextBlock Height="90" TextWrapping="Wrap" Text="Добрый день," Width="574" Foreground="White" FontFamily="Arial" FontSize="72" FontWeight="Bold" HorizontalAlignment="Left"/>
-                <TextBlock Height="90" TextWrapping="Wrap" Text="USER_LAST_LOGIN!" Width="750" FontFamily="Arial" FontSize="72" FontWeight="Bold" HorizontalAlignment="Left">
+                <TextBlock x:Name="user_name" Height="90" TextWrapping="Wrap" Text="Пользователь!" Width="750" FontFamily="Arial" FontSize="72" FontWeight="Bold" HorizontalAlignment="Left">
                     <TextBlock.Foreground>
                         <RadialGradientBrush>
                             <GradientStop Color="#FFAEFF00"/>
@@ -44,7 +44,6 @@
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <RadioButton Height="25" Margin="0,0,0,10" Foreground="White" FontSize="22" Padding="10,-8,0,0" Checked="RadioButton_Checked">Я рекламный агент</RadioButton>
                 <Button Click="Button_enter_click" Content="Войти" FontSize="32" FontWeight="Bold" Width="226" Height="76" HorizontalAlignment="Left" Background="#FFADFF00" Foreground="#FF222222" FontFamily="{DynamicResource Inter}">
                     <Button.Resources>
                         <Style TargetType="Border">

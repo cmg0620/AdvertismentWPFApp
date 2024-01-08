@@ -8,7 +8,7 @@
         Title="Change_Info_Window" Height="500" Width="350">
     <Grid Background="#FF222222">
         <StackPanel>
-            <TextBlock HorizontalAlignment="Left" Height="100" Margin="27,14,0,0" TextWrapping="Wrap" Text="Внесение изменений в информацию о пользователе" VerticalAlignment="Top" Width="258" FontSize="24" FontFamily="Inter" FontWeight="Bold" Foreground="#FFADFF00"/>
+            <TextBlock x:Name="Header" HorizontalAlignment="Left" Height="100" Margin="27,14,0,0" TextWrapping="Wrap" Text="Внесение изменений в информацию о пользователе" VerticalAlignment="Top" Width="258" FontSize="24" FontFamily="Inter" FontWeight="Bold" Foreground="#FFADFF00"/>
             <TextBlock Width="300" HorizontalAlignment="Center" FontSize="16" Foreground="White" Margin="0,0,0,8">Название организации</TextBlock>
             <TextBox x:Name="TextBox_org" FontSize="12" Height="30" Width="300" Margin="0,0,0,14" Padding="20,10,0,0" Foreground="#FF818181">
                 <TextBox.Resources>
@@ -49,7 +49,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button Content="Изменить" FontSize="16" FontWeight="Bold" Width="120" Height="30.3" HorizontalAlignment="Left" Background="#FFADFF00" Foreground="#FF222222" FontFamily="{DynamicResource Inter}" Margin="205,20,0,0" Click="Button_Apply">
+                <Button x:Name="Change_Button" Content="Изменить" FontSize="16" FontWeight="Bold" Width="120" Height="30.3" HorizontalAlignment="Left" Background="#FFADFF00" Foreground="#FF222222" FontFamily="{DynamicResource Inter}" Margin="205,20,0,0" Click="Button_Apply">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="13"/>

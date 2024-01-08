@@ -26,6 +26,7 @@ namespace WpfApp1
     public partial class Change_Info_Window : Window
     {
         string Uid = string.Empty;
+        bool Is_user = true;
 
         public Change_Info_Window(string LUid)
         {
@@ -40,43 +41,90 @@ namespace WpfApp1
             this.Close();
         }
 
+        public void LogAgent()
+        {
+            var bc = new BrushConverter();
+            Header.Foreground = (Brush)bc.ConvertFrom("#FFFAFF00");
+            Change_Button.Background = (Brush)bc.ConvertFrom("#FFFAFF00");
+            Is_user = false;
+        }
+
         public void Button_Apply(object sender, RoutedEventArgs e)
         {
             List<string> list_changes = new List<string>() { TextBox_name.Text, TextBox_org.Text, TextBox_bank.Text, TextBox_phone.Text };
             List<string> list_fields = new List<string>() { "name", "org", "bank", "phone" };
-            XDocument base_clients = XDocument.Load("..\\..\\clients.xml");
-            var clients = base_clients.Element("clients");
-            Console.WriteLine("3Wind");
-            Console.WriteLine(Uid);
-
-
-            foreach (XElement client in clients.Elements("client"))
+            if (Is_user)
             {
-                Console.WriteLine(client.Attribute("id").Value.ToString());
+                XDocument base_clients = XDocument.Load("..\\..\\clients.xml");
+                var clients = base_clients.Element("clients");
 
-                if (client.Attribute("id").Value.ToString() == Uid.ToString())
+
+
+                foreach (XElement client in clients.Elements("client"))
                 {
-                    
-                    for (int i = 0; i < list_changes.Count; i++)
-                    {
-                        
+                    Console.WriteLine(client.Attribute("id").Value.ToString());
 
-                        if (list_changes[i].Length != 0)
+                    if (client.Attribute("id").Value.ToString() == Uid.ToString())
+                    {
+
+                        for (int i = 0; i < list_changes.Count; i++)
                         {
-                            client.Element(list_fields[i]).Value = list_changes[i];
-                            base_clients.Save("..\\..\\clients.xml");
+
+
+                            if (list_changes[i].Length != 0)
+                            {
+                                client.Element(list_fields[i]).Value = list_changes[i];
+                                base_clients.Save("..\\..\\clients.xml");
+                            }
                         }
                     }
                 }
-            }
-            foreach (XElement client in clients.Elements("client"))
-            {
-                if (client.Attribute("id").Value == Uid)
+                foreach (XElement client in clients.Elements("client"))
                 {
-                    UserWindow uw = this.Owner as UserWindow;
-                    uw.CreateText(client.Element("name").Value, client.Element("org").Value, client.Element("bank").Value, client.Element("phone").Value);
+                    if (client.Attribute("id").Value == Uid)
+                    {
+                        UserWindow uw = this.Owner as UserWindow;
+                        uw.CreateText(client.Element("name").Value, client.Element("org").Value, client.Element("bank").Value, client.Element("phone").Value);
+                    }
                 }
             }
+            else
+            {
+                XDocument base_agents = XDocument.Load("..\\..\\agents.xml");
+                var agents = base_agents.Element("agents");
+
+
+
+                foreach (XElement agent in agents.Elements("agent"))
+                {
+                    Console.WriteLine(agent.Attribute("agent_id").Value.ToString());
+
+                    if (agent.Attribute("agent_id").Value.ToString() == Uid.ToString())
+                    {
+
+                        for (int i = 0; i < list_changes.Count; i++)
+                        {
+
+
+                            if (list_changes[i].Length != 0)
+                            {
+                                agent.Element(list_fields[i]).Value = list_changes[i];
+                                base_agents.Save("..\\..\\agents.xml");
+                            }
+                        }
+                    }
+                }
+                foreach (XElement agent in agents.Elements("agent"))
+                {
+                    if (agent.Attribute("agent_id").Value == Uid)
+                    {
+                        UserWindow uw = this.Owner as UserWindow;
+                        uw.CreateText(agent.Element("name").Value, agent.Element("org").Value, agent.Element("bank").Value, agent.Element("phone").Value);
+                    }
+                }
+            }
+
+
             this.Close();
         }
     }

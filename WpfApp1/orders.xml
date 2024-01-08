@@ -4,11 +4,11 @@
     <client_id>1</client_id>
     <order_id>1</order_id>
     <show_id>4</show_id>
-    <agent_id>2</agent_id>
+    <agent_id>1</agent_id>
     <date>07.12.2023</date>
     <name>Новый формат бутылок</name>
     <price>71000</price>
-    <status>Обработано</status>
+    <status>Завершен</status>
   </order>
   <order>
     <client_id>2</client_id>
@@ -73,6 +73,7 @@
     <date>20.10.2023</date>
     <name>Новый формат бутылок</name>
     <price>576</price>
+    <status>Завершен</status>
   </order>
   <order>
     <client_id>3</client_id>
@@ -81,6 +82,8 @@
     <date>11.01.2024 </date>
     <name>заказ 1</name>
     <price>300000</price>
+    <status>Завершен</status>
+    <agent_id>1</agent_id>
   </order>
   <order>
     <client_id>3</client_id>
@@ -89,5 +92,7 @@
     <date>19.01.2024 </date>
     <name>Тестовый заказ 2</name>
     <price>500</price>
+    <status>Завершен</status>
+    <agent_id>1</agent_id>
   </order>
 </orders>
